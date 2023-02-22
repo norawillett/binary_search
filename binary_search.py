@@ -123,7 +123,7 @@ def count_repeats(xs, x):
 
 
 def argmin(f, lo, hi, epsilon=1e-3):
-    if (hi-lo) < epsilon:
+    if (hi - lo) < epsilon:
         return (hi + lo) / 2
     m1 = lo + (hi - lo) / 2.5
     m2 = hi - (hi - lo) / 2.5
