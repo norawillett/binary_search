@@ -72,7 +72,7 @@ def count_repeats(xs, x):
         while left <= right:
             mid = (right + left) // 2
             if xs[mid] == x:
-                if mid == len(xs) - 1 or xs[mid+1] != x:
+                if mid == len(xs) - 1 or xs[mid + 1] != x:
                     return mid
                 else:
                     left = mid + 1
@@ -89,7 +89,7 @@ def count_repeats(xs, x):
         while left <= right:
             mid = (right + left) // 2
             if xs[mid] == x:
-                if mid == 0 or xs[mid-1] != x:
+                if mid == 0 or xs[mid - 1] != x:
                     return mid
                 else:
                     right = mid - 1
@@ -103,7 +103,7 @@ def count_repeats(xs, x):
         return 0
     if x not in xs:
         return 0
-    difference = (b-a) + 1
+    difference = (b - a) + 1
     return difference
 
 
