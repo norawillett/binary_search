@@ -68,57 +68,42 @@ def count_repeats(xs, x):
     >>> count_repeats([3, 2, 1], 4)
     0
     '''
-    def first(xs, x):
-        if len(xs) == 0:
-            return None
-
-        def go(left, right):
-            if xs[left] == x:
-                return left
-            if left == right:
-                if xs[left] == x:
-                    return left
-                else:
-                    return 0
+    def last(xs, x, left, right):
+        while left <= right:
             mid = (right + left) // 2
-            if xs[mid] > x:
-                left = mid + 1
-            if xs[mid] < x:
-                right = mid - 1
             if xs[mid] == x:
-                right = mid
-            return go(left, right)
-        return go(0, len(xs) - 1)
-
-    def last(xs, x):
-        if len(xs) == 0:
-            return None
-
-        def go(left, right):
-            if xs[right] == x:
-                return right
-            if left == right:
-                if xs[right] == x:
-                    return right
-                else:
-                    return 0
-            mid = (right + left) // 2
-            if xs[mid] > x:
-                left = mid + 1
-            if xs[mid] == x:
-                if mid == 0:
+                if mid == len(xs) - 1 or xs[mid+1] != x:
                     return mid
                 else:
                     left = mid + 1
             if xs[mid] < x:
                 right = mid - 1
-            return go(left, right)
-        return go(0, len(xs) - 1)
+            else:
+                left = mid + 1
+        return -1
+    b = last(xs, x, 0, len(xs) - 1)
+    if b == -1:
+        return 0
+
+    def first(xs, x, left, right):
+        while left <= right:
+            mid = (right + left) // 2
+            if xs[mid] == x:
+                if mid == 0 or xs[mid-1] != x:
+                    return mid
+                else:
+                    right = mid - 1
+            if xs[mid] < x:
+                right = mid - 1
+            if xs[mid] > x:
+                left = mid + 1
+        return -1
+    a = first(xs, x, 0, len(xs) - 1)
+    if a == -1:
+        return 0
     if x not in xs:
         return 0
-    a = first(xs, x)
-    b = last(xs, x)
-    difference = (abs(b - a)) + 1
+    difference = (b-a) + 1
     return difference
 
 
