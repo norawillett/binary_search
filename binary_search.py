@@ -33,7 +33,7 @@ def find_smallest_positive(xs):
             return None
         mid = (left + right) // 2
         if xs[mid] > 0:
-            if mid == 0 or xs[mid-1] <= 0:
+            if mid == 0 or xs[mid - 1] <= 0:
                 return mid
             else:
                 right = mid - 1
@@ -118,15 +118,15 @@ def count_repeats(xs, x):
         return 0
     a = first(xs, x)
     b = last(xs, x)
-    difference = (abs(b-a)) + 1
+    difference = (abs(b - a)) + 1
     return difference
 
 
 def argmin(f, lo, hi, epsilon=1e-3):
     if (hi-lo) < epsilon:
-        return (hi+lo) / 2
-    m1 = lo + (hi-lo) / 2.5
-    m2 = hi - (hi-lo) / 2.5
+        return (hi + lo) / 2
+    m1 = lo + (hi - lo) / 2.5
+    m2 = hi - (hi - lo) / 2.5
 
     if f(m1) < f(m2):
         return argmin(f, lo, m2, epsilon)
